@@ -1,0 +1,9 @@
+{
+    "signUp" : "Giriş Yap",
+    "username" : "Kullanıcı Adı",
+    "email" : "E-posta",
+    "password" : "Şifre",
+    "passwordRepeat" : "Doğrulama Şifresi",
+    "passwordMismatch" : "Passwordler eşleşmiyor",
+    "genericError" : "Bilinmeyen bir hata oluştu. Lütfen tekrar deneyin"
+}
