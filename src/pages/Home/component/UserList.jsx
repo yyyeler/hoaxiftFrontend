@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { getAllUsers } from "./api";
 import { Spinner } from "@/shared/components/Spinner";
 import { UserListItem } from "./UserListItem";
+import { useTranslation } from "react-i18next";
 
 export function UserList(){
 
@@ -27,13 +28,15 @@ export function UserList(){
 
     const [apiProgress,setApiProgress] = useState(false);
 
+    const { t } = useTranslation();
+
     useEffect (() => {
         getUsers();
     },[]);
 
     return(
         <div className="card">
-            <div className="card-header text-center fs-4">User List</div>
+            <div className="card-header text-center fs-4">{t('userList')}</div>
             <ul className="list-group list-group-flush">
                 {
                     userPage.content.map(user => {

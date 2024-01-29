@@ -5,5 +5,6 @@
     "password" : "Şifre",
     "passwordRepeat" : "Doğrulama Şifresi",
     "passwordMismatch" : "Passwordler eşleşmiyor",
-    "genericError" : "Bilinmeyen bir hata oluştu. Lütfen tekrar deneyin"
+    "genericError" : "Bilinmeyen bir hata oluştu. Lütfen tekrar deneyin",
+    "userList" : "Kullanıcı Listesi"
 }
