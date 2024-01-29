@@ -2,7 +2,8 @@ import { useEffect, useMemo, useState } from "react";
 import { signUp } from "./api";
 import { Input } from "./component/input";
 import { useTranslation } from "react-i18next";
-import { LanguageSelector } from "../../shared/components/LanguageSelector";
+import { Alert } from "@/shared/components/Alert";
+import { Spinner } from "@/shared/components/Spinner";
 export function SignUp() {
 
     const [username,setUsername] = useState();
@@ -102,22 +103,19 @@ export function SignUp() {
             <Input id="passwordRepeat" label={t('passwordRepeat')} error={passwordRepeatError} 
                         onChange={(event) => setPasswordRepeat(event.target.value)} type="password" />
 
-            {successMessage && <div className="alert alert-success">
-            {successMessage}</div>}
+            {successMessage && (<Alert>{successMessage}</Alert>)}
 
-            {generalError && <div className="alert alert-danger">
-            {generalError}</div>}
+            {generalError &&  (<Alert styleType="danger">{generalError}</Alert>)}
 
             <div className="text-center">
               <button className="btn btn-primary" 
               disabled={apiProgress || ((password !== passwordRepeat) || !(password))}>
-                {apiProgress && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
+                {apiProgress && <Spinner sm />}
                 {t('signUp')}
               </button>
             </div>
           </div>
         </form>
-        <LanguageSelector/>
       </div>
     </div>
   );
