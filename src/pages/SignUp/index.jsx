@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 import { signUp } from "./api";
-import { Input } from "./component/input";
+import { Input } from "@/shared/components/Input";
 import { useTranslation } from "react-i18next";
 import { Alert } from "@/shared/components/Alert";
-import { Spinner } from "@/shared/components/Spinner";
+import { Button } from "@/shared/components/Button";
 export function SignUp() {
 
     const [username,setUsername] = useState();
@@ -108,11 +108,11 @@ export function SignUp() {
             {generalError &&  (<Alert styleType="danger">{generalError}</Alert>)}
 
             <div className="text-center">
-              <button className="btn btn-primary" 
-              disabled={apiProgress || ((password !== passwordRepeat) || !(password))}>
-                {apiProgress && <Spinner sm />}
-                {t('signUp')}
-              </button>
+                <Button
+                    disabled={((password !== passwordRepeat) || !(password))}
+                    apiProgress={apiProgress}>
+                    {t('signUp')}
+                </Button>
             </div>
           </div>
         </form>

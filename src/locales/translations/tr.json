@@ -1,10 +1,11 @@
 {
-    "signUp" : "Giriş Yap",
+    "signUp" : "Kayit Ol",
     "username" : "Kullanıcı Adı",
     "email" : "E-posta",
     "password" : "Şifre",
     "passwordRepeat" : "Doğrulama Şifresi",
     "passwordMismatch" : "Passwordler eşleşmiyor",
     "genericError" : "Bilinmeyen bir hata oluştu. Lütfen tekrar deneyin",
-    "userList" : "Kullanıcı Listesi"
+    "userList" : "Kullanıcı Listesi",
+    "login" : "Giris Yap"
 }
