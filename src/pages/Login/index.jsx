@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Input } from "@/shared/components/Input";
 import { useTranslation } from "react-i18next";
 import { Alert } from "@/shared/components/Alert";
+import { login } from "./api"
 import { Button } from "@/shared/components/Button";
 
 export function Login(){
@@ -32,32 +33,29 @@ export function Login(){
 
       const onSubmit = async (event) => {
         event.preventDefault();
-        setSuccessMessage();
         setGeneralError();
         setApiProgress(true);
 
         try {
-        //   const response = await signUp({
-        //     username,
-        //     email,
-        //     password 
-        //   });
-        //   setSuccessMessage(response.data.message);
+          const response = await login({
+            email,
+            password 
+          });
         } catch (axiosError){
-        //   if(axiosError.response?.data)
-        //   {
-        //     if( axiosError.response.data.status === 400 )
-        //       setErrors(axiosError.response.data.validationErrors); 
-        //     else 
-        //       setGeneralError(t(axiosError.response.data.message));
-        //   }
-        //   else
-        //   {
-        //     setGeneralError(t('genericError'));
-        //   }
+          if(axiosError.response?.data)
+          {
+            if( axiosError.response.data.status === 400 )
+              setErrors(axiosError.response.data.validationErrors); 
+            else 
+              setGeneralError(t(axiosError.response.data.message));
+          }
+          else
+          {
+            setGeneralError(t('genericError'));
+          }
          
         } finally {
-        //   setApiProgress(false);
+          setApiProgress(false);
         }
     } 
  
