@@ -1,9 +1,11 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { Input } from "@/shared/components/Input";
 import { useTranslation } from "react-i18next";
 import { Alert } from "@/shared/components/Alert";
 import { login } from "./api"
 import { Button } from "@/shared/components/Button";
+import { useAuthDispatch } from "@/shared/components/state/context";
+import { useNavigate } from "react-router-dom";
 
 export function Login(){
     const [email,setEmail] = useState();
@@ -12,6 +14,9 @@ export function Login(){
     const [errors, setErrors] = useState({});
     const [generalError, setGeneralError] = useState();
     const { t } = useTranslation();
+    const navigete = useNavigate();
+    
+    const dispatch = useAuthDispatch();
 
     useEffect(() => {
         setErrors(function(lastErrors){
@@ -41,6 +46,8 @@ export function Login(){
             email,
             password 
           });
+          dispatch({type : 'login-success', data : response.data.user});
+          navigete("/");
         } catch (axiosError){
           if(axiosError.response?.data)
           {

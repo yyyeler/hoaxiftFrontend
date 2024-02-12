@@ -1,17 +1,18 @@
-import { Link, Outlet } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 import { LanguageSelector } from "./shared/components/LanguageSelector"
-import { NavBar } from './shared/components/navbar'
+import { NavBar } from './shared/components/NavBar'
+import { AuthenticationContext } from './shared/components/state/context'
 
 function App() {
+
   return (
-    <>
+    <AuthenticationContext>
       <NavBar/>
       <div className='container mt-3'>
-        <Outlet/>
+        <Outlet />
         <LanguageSelector/>
       </div>
-      
-    </>
+    </AuthenticationContext>
   )
 }
 
