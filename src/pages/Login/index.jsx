@@ -46,7 +46,7 @@ export function Login(){
             email,
             password 
           });
-          dispatch({type : 'login-success', data : response.data.user});
+          dispatch({type : 'login-success', data : response.data});
           navigete("/");
         } catch (axiosError){
           if(axiosError.response?.data)

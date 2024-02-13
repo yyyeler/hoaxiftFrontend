@@ -1,5 +1,5 @@
 export function Input(props){
-    const { id, label, error , onChange ,type} = props; 
+    const { id, label, error, onChange, type, defaultValue} = props; 
     return (
     <div className="mb-3">
         <label className="form-label" htmlFor={id}>{label}</label>
@@ -8,6 +8,7 @@ export function Input(props){
         id={id} 
         onChange={onChange}
         type={type}
+        defaultValue={defaultValue}
         />
         <div  className="invalid-feedback">{error}</div>
     </div>);
