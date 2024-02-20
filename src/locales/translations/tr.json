@@ -7,5 +7,6 @@
     "passwordMismatch" : "Passwordler eşleşmiyor",
     "genericError" : "Bilinmeyen bir hata oluştu. Lütfen tekrar deneyin",
     "userList" : "Kullanıcı Listesi",
-    "login" : "Giris Yap"
+    "login" : "Giris Yap",
+    "profileImage" : "Profil Resmi"
 }

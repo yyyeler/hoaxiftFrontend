@@ -7,5 +7,6 @@
     "passwordMismatch" : "Password mismatch",
     "genericError" : "Unexpected error occured. Please try again",
     "userList" : "User List",
-    "login" : "Log In"
+    "login" : "Log In",
+    "profileImage" : "Profile Image"
 }

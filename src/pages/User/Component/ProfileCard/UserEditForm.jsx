@@ -9,7 +9,7 @@ import { updateUser } from "./api";
 import { Alert } from "@/shared/components/Alert";
 import { useState } from "react";
 
-export function UserEditForm({setEditMode}) {
+export function UserEditForm({setEditMode , setTempImage}) {
   const { t } = useTranslation();
   const authState = useAuthState();
   const [apiProgress, setApiProgress] = useState(false);
@@ -17,15 +17,47 @@ export function UserEditForm({setEditMode}) {
   const [generalError, setGeneralError] = useState();
   const [newUsername, setNewUsername] = useState(authState.username);
   const dispatch = useAuthDispatch();
+  const [newImage,setNewImage] = useState();
 
   const onChangedUsername = (event) => {
     setNewUsername(event.target.value);
-    setErrors({});
+    setErrors(function(lastErrors){
+      return {
+        ...lastErrors,
+        username:undefined
+      };
+    });
+    
   };
 
   const onClickCancel = () => {
     setEditMode(false);
     setNewUsername(authState.username);
+    setNewImage();
+    setTempImage();
+  };
+
+  const onSelectImage = (event) => {
+    setErrors(function(lastErrors){
+      return {
+        ...lastErrors,
+        image:undefined
+      };
+    });
+
+    if(event.target.files.length < 1) return;
+
+    const file = event.target.files[0]; 
+    const fileReader = new FileReader();
+
+    fileReader.onloadend = () =>
+    {
+      const data = fileReader.result;
+      setNewImage(data);
+      setTempImage(data);
+    }
+
+    fileReader.readAsDataURL(file);
   };
 
   const onSubmit = async (event) => {
@@ -34,10 +66,10 @@ export function UserEditForm({setEditMode}) {
     setGeneralError();
     setErrors({});
     try {
-      await updateUser(authState.id, { username: newUsername });
+      const { data } = await updateUser(authState.id, { username: newUsername, image: newImage });
       dispatch({
         type: "user-update-success",
-        data: { username: newUsername },
+        data: { username: data.username, image: data.image },
       });
       setEditMode(false);
     } catch (axiosError) {
@@ -61,6 +93,13 @@ export function UserEditForm({setEditMode}) {
         onChange={onChangedUsername}
         error={errors.username}
       />
+
+      <Input 
+        label={t("profileImage")} 
+        type="file" 
+        onChange={onSelectImage} 
+        error={errors.image}
+      /> 
 
       {generalError && <Alert styleType="danger">{generalError}</Alert>}
 
